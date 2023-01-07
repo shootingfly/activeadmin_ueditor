@@ -11,17 +11,16 @@ An Active Admin plugin to use [Ueditor Rich Text Editor](https://github.com/fex-
 ```sh
 cp -rf public/assets/ueditor your_project/public/assets/ueditor
 ```
-1. Add at the end of `.gitignore`:
+3. Add at the end of `.gitignore`:
 ```txt
 !/public/assets/ueditor
 ```
-1. Add at the end of your ActiveAdmin javascripts (_app/assets/javascripts/active_admin.js_):
+4. Add at the end of your ActiveAdmin javascripts (_app/assets/javascripts/active_admin.js_):
 ```js
 //= require activeadmin/ueditor/ueditor.config
 //= require activeadmin/ueditor/ueditor.all.min
-//= require activeadmin/ueditor_input
 ```
-1. Use the input with `as: :ueditor, input_html: { name: 'your_model[your_column]' }` in Active Admin model conf
+5. Use the input with `as: :ueditor, input_html: { name: 'your_model[your_column]' }` in Active Admin model conf
 
 ## Examples
 
@@ -34,12 +33,18 @@ cp -rf public/assets/ueditor your_project/public/assets/ueditor
       f.input :published
     end
     f.actions
+    script <<~JAVASCRIPT.html_safe
+      var editor = new UE.ui.Editor({
+        initialFrameHeight: 280
+      });
+      editor.render("ueditor");
+    JAVASCRIPT
   end
 ```
 
 ## Notes
 
-- Upload functions (Images, Documents, Files, etc.) are not implemented yet, you can impletment the endpoint `post /assets/ueditor/upload_ueditor`.
+- Upload functions (Images, Documents, Files, etc.) are not implemented yet, you can impletment the endpoint `get /assets/ueditor/upload_ueditor`.
 
 ## Do you like it? Star it!
 

@@ -1,14 +1,14 @@
+// [Optional] you can require this file to you active_admin.js, ep: //= require activeadmin/ueditor_input
 window.onload = function() {
   initUEditors();
 }
 
-$(document).on('has_many_add:after', function() {
-  initUEditors();
-});
-
 var initUEditors = function() {
-  var editor = new UE.ui.Editor({
-    initialFrameHeight: 280
-  });
-  editor.render("ueditor");
+  ueditorPresentFlag = document.getElementById("ueditor")
+  if (ueditorPresentFlag) {
+    var editor = new UE.ui.Editor({
+      initialFrameHeight: 280
+    });
+    editor.render("ueditor");
+  }
 };
